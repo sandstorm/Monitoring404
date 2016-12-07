@@ -1,5 +1,16 @@
-
-
 Neos:
-  RedirectHandler:
-    BackendUI:
+  Flow:
+    http:
+      chain:
+        'process':
+          chain:
+            'monitoring404':
+              position: 'after redirect' # you need this ONLY IF the redirecthandler is present
+#              position: 'after routing' # you need this IF the redirecthandler is NOT present
+              component: 'Sandstorm\Monitoring404\Http\Component\Monitoring404Component'
+
+
+Sandstorm:
+  Monitoring404:
+    enabled: true
+    maxNewRecords: 2
